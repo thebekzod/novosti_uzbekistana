@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48" role="img" aria-label="Novosti logo">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="48" rx="12" fill="#0b1526"/>
+  <rect x="6" y="6" width="80" height="36" rx="10" fill="url(#brand)"/>
+  <path d="M18 34V14l16 14V14h8v20h-8L18 20v14z" fill="#fff"/>
+  <text x="96" y="31" fill="#e8eeff" font-family="'Inter', 'Segoe UI', system-ui" font-weight="800" font-size="18">NOVOSTI</text>
+</svg>

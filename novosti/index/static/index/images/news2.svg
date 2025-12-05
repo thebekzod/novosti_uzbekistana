@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-label="Solar plant in Navoi">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#g2)" rx="28"/>
+  <g fill="#fff" opacity="0.18">
+    <circle cx="160" cy="140" r="70"/>
+    <circle cx="720" cy="120" r="40"/>
+  </g>
+  <g transform="translate(120,180)" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round">
+    <rect x="0" y="160" width="660" height="120" rx="22" opacity="0.85"/>
+    <path d="M30 160h600l-80-120H110z" opacity="0.85"/>
+    <path d="M110 140h380l-60-80H170z" opacity="0.7"/>
+  </g>
+  <text x="80" y="470" fill="#fffaf2" font-size="48" font-family="'Inter', 'Segoe UI', system-ui" font-weight="700">Solar energy for 150k homes</text>
+  <text x="80" y="515" fill="#fff3e0" font-size="24" font-family="'Inter', 'Segoe UI', system-ui">Navoi region launches a bright upgrade</text>
+</svg>

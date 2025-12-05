@@ -1,122 +1,112 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html' %}
+{% block title %}Новости Узбекистана{% endblock %}
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body { background-color: #f5f5f7; }
-
-        .hero {
-            padding: 3rem 1.5rem;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg, #0d6efd, #6610f2);
-            color: #fff;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp .6s forwards ease-out;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-
-        <a class="navbar-brand" href="{% url 'home' %}">Новости Узбекистана</a>
-
-        <div class="ms-auto d-flex align-items-center">
-
-            {% if user.is_authenticated %}
-
-                <span class="navbar-text me-3">Здравствуйте, {{ user.username }}</span>
-
-                <a href="{% url 'news_add' %}" class="btn btn-warning btn-sm me-2">
-                    Добавить новость
-                </a>
-
-                <form method="post" action="{% url 'logout' %}" class="d-inline">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-light btn-sm">Выйти</button>
-                </form>
-
-            {% else %}
-                <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm me-2">Войти</a>
-                <a href="{% url 'register' %}" class="btn btn-warning btn-sm">Регистрация</a>
-            {% endif %}
-
+{% block content %}
+<section class="row align-items-center gy-3 mb-4">
+    <div class="col-lg-7">
+        <div class="p-4 p-lg-5 rounded-4 text-light" style="background:linear-gradient(120deg,#0ea5e9,#7c3aed);box-shadow:0 20px 45px rgba(14,165,233,0.35);">
+            <p class="text-uppercase small mb-2 opacity-75">Ru • Uz • En</p>
+            <h1 class="display-6 fw-bold mb-3">{{ ui.hero_title }}</h1>
+            <p class="lead mb-0">{{ ui.hero_subtitle }}</p>
         </div>
     </div>
-</nav>
-
-
-<main class="container my-4">
-
-    <section class="hero mb-4">
-        <h1 class="display-5">Лента новостей</h1>
-        <p class="lead">Новости по категориям</p>
-    </section>
-
-    <!-- Категории -->
-    <section class="mb-5">
-        <h2 class="h5 text-muted">Категории</h2>
-
-        <div class="d-flex flex-wrap gap-2">
-            {% for c in categories %}
-                <a href="{% url 'category_detail' c.id %}"
-                   class="badge text-bg-primary rounded-pill text-decoration-none">
-                    {{ c.category_name }}
-                </a>
-            {% endfor %}
+    <div class="col-lg-5">
+        <div class="card card-elevated h-100 p-4">
+            <div class="d-flex align-items-center mb-3">
+                <span class="pill bg-light text-primary border me-2">{{ ui.categories }}</span>
+                <small class="text-muted">{{ categories|length }} / 3 languages</small>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                {% for c in categories %}
+                    <a href="{% url 'category_detail' c.id %}" class="pill bg-light text-primary text-decoration-none border">{{ c.category_name }}</a>
+                {% empty %}
+                    <span class="text-muted">Категории пока не добавлены.</span>
+                {% endfor %}
+            </div>
+            <div class="mt-4 p-3 rounded-3 bg-light">
+                <div class="small text-secondary">Search tip / Qidiruv:</div>
+                <div class="fw-semibold">{{ ui.search_placeholder }}</div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Новости -->
-    <section>
-        <h2 class="h5 text-muted mb-3">Последние новости</h2>
-
-        <div class="row g-4">
-            {% for n in news %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
-
+{% if user.is_authenticated and favorites_feed %}
+<section class="mb-5">
+    <div class="d-flex align-items-center mb-3">
+        <span class="pill bg-danger text-white me-2">{{ ui.favorites }}</span>
+        <h2 class="h5 section-title mb-0">Ваши сохранённые новости</h2>
+    </div>
+    <div class="row g-4">
+        {% for fav in favorites_feed|slice:':3' %}
+            {% with n=fav.news %}
+                <div class="col-md-4">
+                    <div class="card card-elevated h-100">
+                        {% if n.image_url %}
+                            <img src="{{ n.image_url }}" class="w-100" alt="{{ n.title }}" style="height:180px;object-fit:cover;">
+                        {% endif %}
                         <div class="card-body d-flex flex-column">
-
-                            <h3 class="h5">{{ n.title }}</h3>
-
-                            <span class="badge text-bg-secondary mb-2">
-                                {{ n.news_category.category_name }}
-                            </span>
-
-                            <p class="text-muted">{{ n.content|truncatechars:120 }}</p>
-
-                            <div class="mt-auto d-flex justify-content-between">
-                                <small class="text-muted">{{ n.date_added|date:"d.m.Y H:i" }}</small>
-
-                                <a class="btn btn-primary btn-sm"
-                                   href="{% url 'news_detail' n.id %}">
-                                    Читать
-                                </a>
+                            <div class="d-flex align-items-start justify-content-between">
+                                <span class="badge text-bg-secondary">{{ n.news_category.category_name }}</span>
+                                <form method="post" action="{% url 'news_favorite' n.id %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{% url 'home' %}">
+                                    <button class="heart-btn active" type="submit" title="Убрать из избранного">❤️</button>
+                                </form>
                             </div>
-
+                            <h3 class="h5 mt-3"><a class="text-decoration-none text-dark news-title" href="{% url 'news_detail' n.id %}">{{ n.title }}</a></h3>
+                            <p class="text-muted">{{ n.content|truncatechars:120 }}</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ n.date_added|date:"d.m.Y H:i" }}</small>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'news_detail' n.id %}">{{ ui.read }}</a>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-    </section>
+            {% endwith %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
 
-</main>
+<section>
+    <div class="d-flex align-items-center mb-3">
+        <span class="pill bg-primary text-white me-2">{{ ui.feed }}</span>
+        <h2 class="h5 section-title mb-0">Свежие публикации</h2>
+    </div>
 
-</body>
-</html>
+    <div class="row g-4">
+        {% for n in news %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-elevated h-100">
+                    {% if n.image_url %}
+                        <img src="{{ n.image_url }}" class="w-100" alt="{{ n.title }}" style="height:190px;object-fit:cover;">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge text-bg-light text-primary border">{{ n.news_category.category_name }}</span>
+                            {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'news_favorite' n.id %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{% url 'home' %}">
+                                    <button class="heart-btn {% if n.id in favorite_ids %}active{% endif %}" type="submit" title="Добавить в избранное">
+                                        {% if n.id in favorite_ids %}❤️{% else %}♡{% endif %}
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                        <h3 class="h5"><a class="text-decoration-none text-dark news-title" href="{% url 'news_detail' n.id %}">{{ n.title }}</a></h3>
+                        <p class="text-muted">{{ n.content|truncatechars:140 }}</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                            <small class="text-muted">{{ n.date_added|date:"d.m.Y H:i" }}</small>
+                            <a class="btn btn-primary btn-sm" href="{% url 'news_detail' n.id %}">{{ ui.read }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">Новостей пока нет — добавьте первую!</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
