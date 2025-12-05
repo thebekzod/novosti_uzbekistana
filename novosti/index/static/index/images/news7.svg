@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-label="Fintech investment">
+  <defs>
+    <linearGradient id="g7" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#g7)" rx="28"/>
+  <g fill="none" stroke="#e9ddff" stroke-width="12" stroke-linecap="round" opacity="0.9">
+    <path d="M160 360c80-120 180-120 260-40s140 80 240-40"/>
+    <path d="M420 200c0-40 40-80 100-50" stroke-dasharray="18 14"/>
+  </g>
+  <rect x="560" y="160" width="180" height="110" rx="18" fill="#f6f2ff" opacity="0.9"/>
+  <text x="590" y="200" fill="#5a26c6" font-size="48" font-family="'Inter', 'Segoe UI', system-ui" font-weight="800">$12M</text>
+  <text x="590" y="240" fill="#5a26c6" font-size="22" font-family="'Inter', 'Segoe UI', system-ui">Fintech round</text>
+  <text x="120" y="470" fill="#f4edff" font-size="46" font-family="'Inter', 'Segoe UI', system-ui" font-weight="800">Contactless made local</text>
+  <text x="120" y="515" fill="#e9ddff" font-size="24" font-family="'Inter', 'Segoe UI', system-ui">Regional growth for SMEs</text>
+</svg>

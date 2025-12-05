@@ -4,21 +4,28 @@
 {% block content %}
 <section class="row align-items-center gy-3 mb-4">
     <div class="col-lg-7">
-        <div class="p-4 p-lg-5 rounded-4 text-light" style="background:linear-gradient(120deg,#0d6efd,#7c3aed);box-shadow:0 20px 45px rgba(13,110,253,0.35);">
-            <p class="text-uppercase small mb-2 opacity-75">Ежедневная подборка</p>
-            <h1 class="display-6 fw-bold mb-3">Свежие новости Узбекистана в одном месте</h1>
-            <p class="lead mb-0">Актуальные события, авторские подборки и удобный список избранного, чтобы важное всегда было под рукой.</p>
+        <div class="p-4 p-lg-5 rounded-4 text-light" style="background:linear-gradient(120deg,#0ea5e9,#7c3aed);box-shadow:0 20px 45px rgba(14,165,233,0.35);">
+            <p class="text-uppercase small mb-2 opacity-75">Ru • Uz • En</p>
+            <h1 class="display-6 fw-bold mb-3">{{ ui.hero_title }}</h1>
+            <p class="lead mb-0">{{ ui.hero_subtitle }}</p>
         </div>
     </div>
     <div class="col-lg-5">
         <div class="card card-elevated h-100 p-4">
-            <h2 class="h5 section-title mb-3">Категории</h2>
+            <div class="d-flex align-items-center mb-3">
+                <span class="pill bg-light text-primary border me-2">{{ ui.categories }}</span>
+                <small class="text-muted">{{ categories|length }} / 3 languages</small>
+            </div>
             <div class="d-flex flex-wrap gap-2">
                 {% for c in categories %}
                     <a href="{% url 'category_detail' c.id %}" class="pill bg-light text-primary text-decoration-none border">{{ c.category_name }}</a>
                 {% empty %}
                     <span class="text-muted">Категории пока не добавлены.</span>
                 {% endfor %}
+            </div>
+            <div class="mt-4 p-3 rounded-3 bg-light">
+                <div class="small text-secondary">Search tip / Qidiruv:</div>
+                <div class="fw-semibold">{{ ui.search_placeholder }}</div>
             </div>
         </div>
     </div>
@@ -27,7 +34,7 @@
 {% if user.is_authenticated and favorites_feed %}
 <section class="mb-5">
     <div class="d-flex align-items-center mb-3">
-        <span class="pill bg-danger text-white me-2">Избранное</span>
+        <span class="pill bg-danger text-white me-2">{{ ui.favorites }}</span>
         <h2 class="h5 section-title mb-0">Ваши сохранённые новости</h2>
     </div>
     <div class="row g-4">
@@ -35,6 +42,9 @@
             {% with n=fav.news %}
                 <div class="col-md-4">
                     <div class="card card-elevated h-100">
+                        {% if n.image_url %}
+                            <img src="{{ n.image_url }}" class="w-100" alt="{{ n.title }}" style="height:180px;object-fit:cover;">
+                        {% endif %}
                         <div class="card-body d-flex flex-column">
                             <div class="d-flex align-items-start justify-content-between">
                                 <span class="badge text-bg-secondary">{{ n.news_category.category_name }}</span>
@@ -44,11 +54,11 @@
                                     <button class="heart-btn active" type="submit" title="Убрать из избранного">❤️</button>
                                 </form>
                             </div>
-                            <h3 class="h5 mt-3">{{ n.title }}</h3>
+                            <h3 class="h5 mt-3"><a class="text-decoration-none text-dark news-title" href="{% url 'news_detail' n.id %}">{{ n.title }}</a></h3>
                             <p class="text-muted">{{ n.content|truncatechars:120 }}</p>
                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                 <small class="text-muted">{{ n.date_added|date:"d.m.Y H:i" }}</small>
-                                <a class="btn btn-outline-primary btn-sm" href="{% url 'news_detail' n.id %}">Читать</a>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'news_detail' n.id %}">{{ ui.read }}</a>
                             </div>
                         </div>
                     </div>
@@ -61,14 +71,17 @@
 
 <section>
     <div class="d-flex align-items-center mb-3">
-        <span class="pill bg-primary text-white me-2">Лента</span>
-        <h2 class="h5 section-title mb-0">Последние публикации</h2>
+        <span class="pill bg-primary text-white me-2">{{ ui.feed }}</span>
+        <h2 class="h5 section-title mb-0">Свежие публикации</h2>
     </div>
 
     <div class="row g-4">
         {% for n in news %}
             <div class="col-md-6 col-lg-4">
                 <div class="card card-elevated h-100">
+                    {% if n.image_url %}
+                        <img src="{{ n.image_url }}" class="w-100" alt="{{ n.title }}" style="height:190px;object-fit:cover;">
+                    {% endif %}
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <span class="badge text-bg-light text-primary border">{{ n.news_category.category_name }}</span>
@@ -82,11 +95,11 @@
                                 </form>
                             {% endif %}
                         </div>
-                        <h3 class="h5">{{ n.title }}</h3>
+                        <h3 class="h5"><a class="text-decoration-none text-dark news-title" href="{% url 'news_detail' n.id %}">{{ n.title }}</a></h3>
                         <p class="text-muted">{{ n.content|truncatechars:140 }}</p>
                         <div class="mt-auto d-flex justify-content-between align-items-center">
                             <small class="text-muted">{{ n.date_added|date:"d.m.Y H:i" }}</small>
-                            <a class="btn btn-primary btn-sm" href="{% url 'news_detail' n.id %}">Читать</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'news_detail' n.id %}">{{ ui.read }}</a>
                         </div>
                     </div>
                 </div>

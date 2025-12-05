@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-label="Travel route">
+  <defs>
+    <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#g6)" rx="28"/>
+  <g fill="none" stroke="#e0ecff" stroke-width="12" stroke-linecap="round" opacity="0.9">
+    <path d="M160 420c80-120 220-120 300-40s160 80 280-40" stroke-dasharray="20 16"/>
+    <circle cx="200" cy="380" r="20" fill="#e0ecff"/>
+    <circle cx="360" cy="320" r="20" fill="#e0ecff"/>
+    <circle cx="520" cy="320" r="20" fill="#e0ecff"/>
+    <circle cx="680" cy="240" r="20" fill="#e0ecff"/>
+  </g>
+  <text x="120" y="150" fill="#f4f7ff" font-size="46" font-family="'Inter', 'Segoe UI', system-ui" font-weight="800">Route of seven cities</text>
+  <text x="120" y="200" fill="#e6ecff" font-size="24" font-family="'Inter', 'Segoe UI', system-ui">One ticket, Uzbek &amp; English guides</text>
+</svg>

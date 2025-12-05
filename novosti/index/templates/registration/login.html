@@ -3,47 +3,18 @@
 
 {% block extra_head %}
 <style>
-    .auth-shell {
-        max-width: 920px;
-        margin: 0 auto;
-    }
-    .auth-card {
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-        padding: 32px;
-    }
+    .auth-shell { max-width: 980px; margin: 0 auto; }
+    .auth-card { background: #fff; border-radius: 14px; box-shadow: 0 16px 48px rgba(0,0,0,0.08); padding: 32px; }
     .auth-side {
         background: linear-gradient(135deg, #0a66c2, #004182);
         color: #fff;
-        border-radius: 10px;
-        padding: 32px;
+        border-radius: 14px;
+        padding: 36px;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
     }
-    .social-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        justify-content: center;
-        border: 1px solid #dce6f1;
-        background: #fff;
-        border-radius: 8px;
-        padding: 10px 14px;
-        font-weight: 600;
-        color: #0a66c2;
-    }
-    .divider {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        color: #6b7280;
-        font-size: 0.95rem;
-    }
-    .divider::before, .divider::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: #e5e7eb;
-    }
+    .social-btn { display: flex; align-items: center; gap: 10px; justify-content: center; border: 1px solid #dce6f1; background: #fff; border-radius: 10px; padding: 10px 14px; font-weight: 600; color: #0a66c2; }
+    .divider { display: flex; align-items: center; gap: 12px; color: #6b7280; font-size: 0.95rem; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
     .form-floating label { color: #6c757d; }
     .small-link { font-size: 0.9rem; }
 </style>
@@ -55,7 +26,7 @@
         <div class="col-lg-6">
             <div class="auth-card h-100">
                 <h1 class="h4 text-center mb-2">Вход</h1>
-                <p class="text-muted text-center mb-4">Продолжайте, чтобы читать новости и сохранять избранное.</p>
+                <p class="text-muted text-center mb-4">Ru • O‘z • En — продолжайте, чтобы читать новости и сохранять избранное.</p>
 
                 <div class="d-grid gap-2 mb-3">
                     <button class="social-btn" type="button">Продолжить с Google</button>

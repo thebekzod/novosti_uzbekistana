@@ -27,6 +27,11 @@ class News(models.Model):
     content = models.TextField(
         verbose_name='Основной текст'
     )
+    image_url = models.URLField(
+        verbose_name='Изображение',
+        blank=True,
+        help_text='Ссылка на обложку или иллюстрацию новости'
+    )
     news_category = models.ForeignKey(
         NewsCategory,
         on_delete=models.CASCADE,

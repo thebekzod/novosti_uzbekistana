@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}{{ category.category_name }} — Новости{% endblock %}
+{% block title %}Поиск{% endblock %}
 
 {% block content %}
-<div class="bg-white rounded-4 p-4 p-lg-5 shadow-sm mb-4">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-        <div>
-            <p class="text-uppercase small text-muted mb-1">Категория</p>
-            <h1 class="h3 mb-0">{{ category.category_name }}</h1>
-        </div>
-        <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm">← На главную</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <p class="text-uppercase small text-muted mb-1">Поиск</p>
+        <h1 class="h4 mb-0">{{ query|default:'Введите запрос' }}</h1>
     </div>
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm">← На главную</a>
 </div>
 
 <div class="row g-4">
-    {% for n in news %}
+    {% for n in results %}
         <div class="col-md-6 col-lg-4">
             <div class="card card-elevated h-100">
                 {% if n.image_url %}
@@ -25,7 +23,7 @@
                         {% if user.is_authenticated %}
                             <form method="post" action="{% url 'news_favorite' n.id %}">
                                 {% csrf_token %}
-                                <input type="hidden" name="next" value="{{ request.path }}">
+                                <input type="hidden" name="next" value="{{ request.get_full_path }}">
                                 <button class="heart-btn {% if n.id in favorite_ids %}active{% endif %}" type="submit" title="Добавить в избранное">
                                     {% if n.id in favorite_ids %}❤️{% else %}♡{% endif %}
                                 </button>
@@ -43,7 +41,7 @@
         </div>
     {% empty %}
         <div class="col-12">
-            <div class="alert alert-light border">В этой категории пока нет новостей.</div>
+            <div class="alert alert-light border">Ничего не найдено. Попробуйте другой запрос.</div>
         </div>
     {% endfor %}
 </div>

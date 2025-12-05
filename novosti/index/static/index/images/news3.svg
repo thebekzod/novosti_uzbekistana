@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-label="Uzbek-Korean IT academy">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1fb6ff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#g3)" rx="28"/>
+  <rect x="130" y="140" width="640" height="300" rx="26" fill="#0b1f33" opacity="0.75"/>
+  <g stroke="#7ce7ff" stroke-width="6" stroke-linecap="round" opacity="0.8">
+    <path d="M190 220h520"/>
+    <path d="M190 280h360"/>
+    <path d="M190 340h440"/>
+  </g>
+  <g fill="#c8f5ff" font-family="'Inter', 'Segoe UI', system-ui" font-weight="700">
+    <text x="190" y="210" font-size="22">AI / Cybersecurity / UX</text>
+    <text x="190" y="270" font-size="22">Bilingual labs: Uzbek + English</text>
+    <text x="190" y="330" font-size="22">Mentors from Seoul & Tashkent</text>
+  </g>
+  <text x="160" y="120" fill="#e1fbff" font-size="40" font-family="'Inter', 'Segoe UI', system-ui" font-weight="800">IT Academy Launch</text>
+  <text x="160" y="420" fill="#e1fbff" font-size="22" font-family="'Inter', 'Segoe UI', system-ui">Upskilling students for global teams</text>
+</svg>

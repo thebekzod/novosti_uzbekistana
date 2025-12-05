@@ -21,10 +21,14 @@
                     </form>
                 {% endif %}
             </div>
+            {% if news.image_url %}
+                <img src="{{ news.image_url }}" class="w-100 rounded-3 mb-3" alt="{{ news.title }}">
+            {% endif %}
             <hr>
             <article class="lead" style="white-space: pre-line;">{{ news.content }}</article>
-            <div class="mt-4">
+            <div class="mt-4 d-flex gap-2">
                 <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm">← К ленте</a>
+                <a href="{% url 'category_detail' news.news_category.id %}" class="btn btn-outline-primary btn-sm">{{ news.news_category.category_name }}</a>
             </div>
         </div>
     </div>

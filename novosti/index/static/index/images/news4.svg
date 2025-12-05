@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-label="Plov festival">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#g4)" rx="28"/>
+  <circle cx="450" cy="240" r="150" fill="#fff" opacity="0.12"/>
+  <g transform="translate(250,180)" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <circle cx="200" cy="110" r="90"/>
+    <path d="M120 200c20-40 260-40 280 0"/>
+    <path d="M200 20v30M260 40l-18 24M320 90h-30M120 90h30M148 64l18 24"/>
+  </g>
+  <text x="120" y="430" fill="#fffaf2" font-size="48" font-family="'Inter', 'Segoe UI', system-ui" font-weight="800">Plov &amp; People</text>
+  <text x="120" y="480" fill="#fff4e5" font-size="24" font-family="'Inter', 'Segoe UI', system-ui">Самаркандский фестиваль вкусов и музыки</text>
+</svg>

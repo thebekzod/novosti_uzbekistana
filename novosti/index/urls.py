@@ -7,6 +7,7 @@ urlpatterns = [
     path('news/<int:nc>/', views.news_page, name='news_detail'),
     path('news/<int:nc>/favorite/', views.toggle_favorite, name='news_favorite'),
     path('favorites/', views.favorites_page, name='favorites'),
+    path('search/', views.search_news, name='search_news'),
 
     path('news/add/', views.news_add, name='news_add'),      # 🔹 НОВОЕ
     path('register/', views.register, name='register'),
