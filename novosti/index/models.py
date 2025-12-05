@@ -40,6 +40,7 @@ class News(models.Model):
     date_added = models.DateTimeField(
         auto_now_add=True
     )
+    image_url = models.URLField(blank=True, null=True)  # или ImageField, CharField и т.д.
 
     def __str__(self):
         return self.title
